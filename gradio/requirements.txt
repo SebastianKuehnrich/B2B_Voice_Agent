@@ -1,0 +1,17 @@
+# Gradio Testinterface – Python Requirements
+# Install: pip install -r gradio/requirements.txt
+
+gradio>=4.44.0
+anthropic>=0.39.0
+python-dotenv>=1.0.0
+openai>=1.58.0          # for embeddings (text-embedding-3-small)
+langfuse>=2.0.0         # LLM observability
+datasets>=3.0.0         # HuggingFace datasets (for training data loading)
+transformers>=4.47.0    # HuggingFace transformers
+sentencepiece>=0.2.0    # Required for gbert-base tokenizer
+tokenizers>=0.21.0      # Fast tokenizer backend
+torch>=2.5.0            # PyTorch (for fine-tuning)
+peft>=0.14.0            # Parameter-Efficient Fine-Tuning (LoRA)
+trl>=0.13.0             # Transformer Reinforcement Learning (SFT Trainer)
+pandas>=2.2.0
+numpy>=1.26.0

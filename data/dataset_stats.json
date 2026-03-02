@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-02-28T09:00:51.360952",
+  "total_samples": 13,
+  "train_samples": 11,
+  "eval_samples": 2,
+  "grade_distribution": {
+    "A": 5,
+    "B": 5,
+    "C": 3
+  },
+  "booking_rate": "61.5%",
+  "scenarios": [
+    "a_lead_full_booking",
+    "a_lead_budget_objection_overcome",
+    "b_lead_not_decider",
+    "b_lead_timeline_unclear",
+    "c_lead_no_need",
+    "c_lead_wrong_person",
+    "objection_datenschutz",
+    "objection_bereits_loesung",
+    "objection_kein_budget_roi",
+    "a_lead_fast_booking",
+    "objection_keine_zeit_async",
+    "a_lead_hr_saas_competitor",
+    "b_lead_small_company_nurturing"
+  ]
+}

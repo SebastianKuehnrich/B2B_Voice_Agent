@@ -1,0 +1,81 @@
+# ─────────────────────────────────────────────────────────────────
+# .gitignore – B2B Voice Agent (TalentFlow)
+# ─────────────────────────────────────────────────────────────────
+
+# Environment variables – NEVER commit!
+.env
+.env.local
+.env.production
+.env.staging
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Next.js build output
+dashboard/.next/
+dashboard/out/
+dashboard/.vercel/
+
+# Build & dist
+dist/
+build/
+*.js.map
+
+# Logs
+logs/
+*.log
+server/logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Claude Code
+.claude/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Recordings (large binary files)
+recordings/*.mp4
+recordings/*.mp3
+recordings/*.webm
+recordings/*.wav
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# ML model outputs (large binary files)
+data/model_output/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+tmp_*.json
+tmp_*.txt
+NUL
+
+# Projektplan (Word-Dokument, nicht versioniert)
+Projektplan_B2B_Voice_Agent.docx
+
+# Package locks (nur server/ und dashboard/ haben eigene)
+# Root lock wird behalten fuer Jest

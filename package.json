@@ -1,0 +1,17 @@
+{
+  "name": "b2b-voice-agent",
+  "version": "1.0.0",
+  "description": "B2B Voice Agent – TalentFlow HR SaaS (Everlast Challenge 2026)",
+  "private": true,
+  "scripts": {
+    "create-assistant": "node scripts/create-assistant.js",
+    "setup": "node scripts/create-assistant.js",
+    "dev:server": "cd server && npm run dev",
+    "dev:dashboard": "cd dashboard && npm run dev",
+    "test": "cd server && npx jest --rootDir=.. --testMatch=\"**/tests/**/*.test.js\" --no-cache",
+    "build:dashboard": "cd dashboard && npm run build"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "_comment": "B2B Voice Agent – TalentFlow HR SaaS | Everlast Challenge 2026",
+  "_version": "1.0.0",
+  "_last_updated": "2026-02-28",
+
+  "agent": {
+    "name": "Lisa",
+    "full_name": "Lisa Berger",
+    "persona": "senior_sales_consultant",
+    "company": "TalentFlow",
+    "language": "de",
+    "tone": "freundlich, kompetent, direkt – niemals aggressiv oder aufdringlich",
+    "speaking_style": "natürlich, gesprächig, mit echten Pausen – kein Call-Center-Roboter"
+  },
+
+  "product": {
+    "name": "TalentFlow",
+    "tagline": "KI-gestützte Bewerberqualifizierung für den Mittelstand",
+    "category": "HR & Recruiting SaaS",
+    "target_market": "Unternehmen mit 50–500 Mitarbeitern (DACH-Region)",
+    "pricing": {
+      "starter": "499 EUR/Monat (bis 10 aktive Stellen)",
+      "growth": "999 EUR/Monat (bis 30 aktive Stellen)",
+      "enterprise": "ab 1.499 EUR/Monat (unbegrenzt)"
+    },
+    "key_benefits": [
+      "Time-to-Hire um durchschnittlich 60% reduzieren",
+      "3–5 HR-Stunden täglich einsparen",
+      "Nur qualifizierte Kandidaten erreichen das Erstgespräch",
+      "DSGVO-konform, Daten verbleiben in der EU",
+      "Nahtlose Integration: Personio, Workday, SAP SuccessFactors"
+    ],
+    "case_study": {
+      "company": "Müller Logistik GmbH",
+      "employees": 180,
+      "problem": "45 Tage Time-to-Hire, HR-Team überfordert mit 300+ Bewerbungen/Monat",
+      "result_time_to_hire_days_before": 45,
+      "result_time_to_hire_days_after": 18,
+      "result_reduction_percent": 60,
+      "result_hours_saved_per_week": 20,
+      "quote": "Wir hätten nie gedacht, dass wir so schnell die richtigen Kandidaten finden können."
+    }
+  },
+
+  "vapi": {
+    "model": "claude-sonnet-4-5-20250929",
+    "model_provider": "anthropic",
+    "tts_provider": "elevenlabs",
+    "stt_provider": "deepgram",
+    "stt_model": "nova-2",
+    "stt_language": "de",
+    "stt_custom_vocabulary": [
+      "TalentFlow", "Bewerber", "Kandidaten", "Recruiting", "ATS",
+      "Personio", "Workday", "Onboarding", "Time-to-Hire", "DSGVO",
+      "HR-Software", "Headhunter", "Talentpool", "Stellenanzeige"
+    ],
+    "interruptions_enabled": true,
+    "backchanneling_enabled": true,
+    "silence_timeout_seconds": 8,
+    "max_duration_seconds": 900,
+    "end_call_phrases": [
+      "Auf Wiederhören",
+      "Tschüss",
+      "Auf Wiedersehen",
+      "Bis dann"
+    ]
+  },
+
+  "conversation": {
+    "phases": [
+      {
+        "id": "opening",
+        "name": "Begrüßung & Kontext",
+        "goal": "Vertrauen aufbauen, Erlaubnis für das Gespräch einholen",
+        "max_duration_seconds": 90,
+        "required_before_next": true
+      },
+      {
+        "id": "discovery",
+        "name": "Bedarfsermittlung",
+        "goal": "Pain Points, Teamgröße, aktuellen Prozess und Bewerbungsvolumen verstehen",
+        "max_duration_seconds": 180,
+        "required_before_next": true
+      },
+      {
+        "id": "value_pitch",
+        "name": "Personalisierter Mehrwert",
+        "goal": "TalentFlow-Nutzen direkt auf entdeckte Pain Points mappen",
+        "max_duration_seconds": 120,
+        "required_before_next": false
+      },
+      {
+        "id": "qualification",
+        "name": "Lead-Qualifizierung (BANT+)",
+        "goal": "Budget, Entscheider-Rolle, Timeline und ICP-Fit erfassen",
+        "max_duration_seconds": 180,
+        "required_before_next": true
+      },
+      {
+        "id": "booking",
+        "name": "Terminbuchung / Closing",
+        "goal": "Demo-Termin buchen oder Nurturing triggern",
+        "max_duration_seconds": 120,
+        "required_before_next": false
+      },
+      {
+        "id": "wrapup",
+        "name": "Verabschiedung & Summary",
+        "goal": "Nächste Schritte zusammenfassen, freundlich verabschieden",
+        "max_duration_seconds": 60,
+        "required_before_next": false
+      }
+    ],
+
+    "objection_handling": {
+      "kein_budget": {
+        "trigger_phrases": ["kein Budget", "zu teuer", "können wir uns nicht leisten", "Budget nicht eingeplant"],
+        "strategy": "ROI konkretisieren: HR-Kosten (Stundenrate × gesparte Stunden) gegen Lizenzkosten rechnen. Pilot-Option anbieten."
+      },
+      "kein_entscheider": {
+        "trigger_phrases": ["bin nicht zuständig", "muss ich erst fragen", "nicht meine Entscheidung", "Geschäftsführer"],
+        "strategy": "Internen Champion aktivieren: detailliertes Informationspaket für Entscheider anbieten + gemeinsamen Termin vorschlagen."
+      },
+      "keine_zeit": {
+        "trigger_phrases": ["keine Zeit", "gerade viel los", "zu beschäftigt", "passt gerade nicht"],
+        "strategy": "Minimalen Aufwand betonen: 20-Minuten-Demo, asynchrones Video als Alternative, flexible Terminoptionen."
+      },
+      "bereits_loesung": {
+        "trigger_phrases": ["haben schon", "nutzen bereits", "Personio", "Workday", "andere Software"],
+        "strategy": "Integration hervorheben: TalentFlow ergänzt bestehende ATS-Systeme. Konkret fragen welche Lücken noch offen sind."
+      },
+      "datenschutz": {
+        "trigger_phrases": ["Datenschutz", "DSGVO", "Daten", "Server", "Sicherheit"],
+        "strategy": "DSGVO-Konformität betonen: EU-Server, keine Datenweitergabe, ISO 27001 zertifiziert."
+      }
+    }
+  },
+
+  "qualification": {
+    "model": "BANT_PLUS",
+    "criteria": [
+      {
+        "id": "budget",
+        "name": "Budget",
+        "weight": 0.25,
+        "scoring": {
+          "high": { "threshold": "Explizites Budget > 500 EUR/Monat oder Budgetfreigabe-Prozess vorhanden", "points": 25 },
+          "medium": { "threshold": "Budget vorhanden aber Größe unklar oder Budget < 500 EUR/Monat", "points": 12 },
+          "low": { "threshold": "Kein Budget, kein Interesse an Investition", "points": 0 }
+        }
+      },
+      {
+        "id": "authority",
+        "name": "Entscheidungsbefugnis",
+        "weight": 0.25,
+        "scoring": {
+          "high": { "threshold": "Alleinentscheider oder Haupteinfluss auf Kaufentscheidung", "points": 25 },
+          "medium": { "threshold": "Mitentscheider, muss Vorgesetzten überzeugen", "points": 12 },
+          "low": { "threshold": "Kein Einfluss auf Entscheidung", "points": 0 }
+        }
+      },
+      {
+        "id": "need",
+        "name": "Bedarf / Pain",
+        "weight": 0.25,
+        "scoring": {
+          "high": { "threshold": "> 50 Bewerbungen/Monat ODER Time-to-Hire > 30 Tage ODER expliziter Pain geäußert", "points": 25 },
+          "medium": { "threshold": "Moderater Bedarf, aktueller Prozess suboptimal aber kein akuter Schmerz", "points": 12 },
+          "low": { "threshold": "Kein klarer Bedarf, zufrieden mit Status quo", "points": 0 }
+        }
+      },
+      {
+        "id": "timeline",
+        "name": "Zeitrahmen",
+        "weight": 0.15,
+        "scoring": {
+          "high": { "threshold": "Lösung in < 3 Monaten gewünscht", "points": 15 },
+          "medium": { "threshold": "3–6 Monate oder unklar", "points": 8 },
+          "low": { "threshold": "> 6 Monate oder kein konkreter Zeitrahmen", "points": 0 }
+        }
+      },
+      {
+        "id": "fit",
+        "name": "ICP-Fit (Unternehmensgröße)",
+        "weight": 0.10,
+        "scoring": {
+          "high": { "threshold": "50–500 Mitarbeiter, DACH-Region, regelmäßige Recruiting-Aktivität", "points": 10 },
+          "medium": { "threshold": "20–50 oder 500–1000 Mitarbeiter", "points": 5 },
+          "low": { "threshold": "< 20 oder > 1000 Mitarbeiter, oder kein DACH", "points": 0 }
+        }
+      }
+    ],
+    "lead_grades": {
+      "A": {
+        "min_score": 80,
+        "label": "Hot Lead",
+        "action": "Demo-Termin direkt im Call buchen – Priorität 1",
+        "color": "green"
+      },
+      "B": {
+        "min_score": 50,
+        "label": "Warm Lead",
+        "action": "Demo-Termin anbieten + Follow-up-E-Mail mit Case Study senden",
+        "color": "orange"
+      },
+      "C": {
+        "min_score": 0,
+        "label": "Cold Lead",
+        "action": "Nurturing-Sequenz triggern (E-Mail-Serie), kein Demo-Termin",
+        "color": "red"
+      }
+    }
+  },
+
+  "calendar": {
+    "provider": "cal.com",
+    "api_version": "v2",
+    "event_type_id": "${CALCOM_EVENT_TYPE_ID}",
+    "event_name": "TalentFlow Demo (30 Min.)",
+    "slots_to_offer": 3,
+    "slot_format": "Montag, 3. März um 14:00 Uhr",
+    "booking_lead_time_hours": 4,
+    "max_days_ahead": 14,
+    "confirmation_message": "Super, ich habe Ihnen gerade eine Kalender-Einladung geschickt. Unser Team freut sich auf das Gespräch!"
+  },
+
+  "post_call": {
+    "generate_summary": true,
+    "summary_model": "claude-sonnet-4-5-20250929",
+    "summary_fields": [
+      "lead_name",
+      "company_name",
+      "lead_score",
+      "lead_grade",
+      "bant_details",
+      "pain_points",
+      "objections_raised",
+      "objections_handled",
+      "booked_slot",
+      "recommended_next_steps",
+      "call_duration_seconds",
+      "drop_off_phase"
+    ],
+    "trigger_nurturing_on_grade_c": true,
+    "send_confirmation_email": true
+  }
+}
