@@ -1,8 +1,8 @@
 # B2B Voice Agent -- TalentFlow HR SaaS
 
-> Everlast Consulting Challenge 2026 | KI-gestuetzter Sales Voice Agent fuer B2B-Entscheider
+> Everlast Consulting Challenge 2026 | KI-gestuetzter Sales Voice Agent für B2B-Entscheider
 
-**"Lisa Berger"** ist ein vollautomatischer Voice Agent, der B2B-Telefongespraeche fuehrt, Leads anhand des BANT+ Modells qualifiziert und direkt Demo-Termine ueber Cal.com bucht -- 24/7, mit unter 1,5 Sekunden Latenz.
+**"Lisa Berger"** ist ein vollautomatischer Voice Agent, der B2B-Telefongespraeche führt, Leads anhand des BANT+ Modells qualifiziert und direkt Demo-Termine über Cal.com bucht -- 24/7, mit unter 1,5 Sekunden Latenz.
 
 ---
 
@@ -31,7 +31,7 @@ Eingehender Anruf (Vapi Telefonnummer)
                                |______________________|
 ```
 
-**Datenfluss:** Vapi sendet Webhook-Events an den Express-Server. Dieser verarbeitet Tool-Calls (Cal.com Buchung), generiert Post-Call Summaries (Claude) und speichert alles in Supabase. Das Next.js Dashboard liest die Daten ueber Supabase Realtime.
+**Datenfluss:** Vapi sendet Webhook-Events an den Express-Server. Dieser verarbeitet Tool-Calls (Cal.com Buchung), generiert Post-Call Summaries (Claude) und speichert alles in Supabase. Das Next.js Dashboard liest die Daten über Supabase Realtime.
 
 ### Tech-Stack
 
@@ -124,17 +124,17 @@ cp .env.example .env
 # .env mit deinen API-Keys befuellen (siehe .env.example fuer Beschreibungen)
 ```
 
-Benoetigte API-Keys:
+Benötigte API-Keys:
 - **Vapi** -- Private API Key + Telefonnummer
 - **Anthropic** -- Claude API Key (fuer Gespraechslogik + Post-Call Summary)
-- **ElevenLabs** -- TTS Voice ID fuer Lisa
+- **ElevenLabs** -- TTS Voice ID für Lisa
 - **Deepgram** -- STT API Key (200 USD Free Credit)
 - **Cal.com** -- API Key + Event Type ID
 - **Supabase** -- URL + Anon Key + Service Role Key
 
 ### 3. Supabase-Datenbank einrichten
 
-Alle Migrationen der Reihe nach im [Supabase SQL Editor](https://supabase.com/dashboard) ausfuehren:
+Alle Migrationen der Reihe nach im [Supabase SQL Editor](https://supabase.com/dashboard) ausführen:
 
 ```bash
 # 1. Tabellen, RLS, Views
@@ -198,7 +198,7 @@ npm run dev
 
 ---
 
-## Gespraechsphasen
+## Gesprächsphasen
 
 ```
 Opening (90s) -> Discovery (3min) -> Value Pitch (2min) -> Qualification (3min) -> Booking (2min) -> Wrap-up (1min)
@@ -249,13 +249,13 @@ Das Analytics Dashboard zeigt 6 KPI-Cards und 5 interaktive Charts:
 5. **Top Einwaende** -- Horizontaler Bar-Chart: Haeufigste Einwand-Kategorien (aus Post-Call NLP)
 
 ### Realtime
-Das Dashboard aktualisiert sich automatisch ueber Supabase Realtime Subscriptions bei jedem neuen Call.
+Das Dashboard aktualisiert sich automatisch über Supabase Realtime Subscriptions bei jedem neuen Call.
 
 ---
 
 ## Post-Call Analyse
 
-Nach jedem Gespraech generiert Claude automatisch eine strukturierte JSON-Summary:
+Nach jedem Gespräch generiert Claude automatisch eine strukturierte JSON-Summary:
 
 ```json
 {
@@ -278,15 +278,15 @@ Nach jedem Gespraech generiert Claude automatisch eine strukturierte JSON-Summar
 
 ## Design-Entscheidungen
 
-**Warum Vapi?** Niedrigste Latenz (< 1,2s E2E) mit nativer Claude-Integration und Tool-Call-Support waehrend des Gespraechs -- entscheidend fuer die Cal.com-Buchung mitten im Call.
+**Warum Vapi?** Niedrigste Latenz (< 1,2s E2E) mit nativer Claude-Integration und Tool-Call-Support während des Gesprächs -- entscheidend für die Cal.com-Buchung mitten im Call.
 
-**Warum Claude Sonnet 4.5?** Beste Deutsch-Qualitaet bei Sales-Gespraechen, ueberlegenes Kontext-Handling und natuerlichere Einwandbehandlung im Vergleich zu GPT-4o in deutschen B2B-Kontexten.
+**Warum Claude Sonnet 4.5?** Beste Deutsch-Qualität bei Sales-Gesprächen, überlegenes Kontext-Handling und natürlichere Einwandbehandlung im Vergleich zu GPT-4o in deutschen B2B-Kontexten.
 
-**Warum Cal.com statt Calendly?** Vollstaendige REST API (v2) ohne Webhook-Umwege, Open-Source (DSGVO-Vorteil, EU-Hosting moeglich) und direkte Tool-Call-Integration ohne Zapier/Make.
+**Warum Cal.com statt Calendly?** Vollständige REST API (v2) ohne Webhook-Umwege, Open-Source (DSGVO-Vorteil, EU-Hosting möglich) und direkte Tool-Call-Integration ohne Zapier/Make.
 
-**Warum Supabase?** Realtime Subscriptions fuer das Live-Dashboard, Row-Level-Security fuer Datenisolation und die eingebaute REST API reduzieren Server-Overhead erheblich.
+**Warum Supabase?** Realtime Subscriptions für das Live-Dashboard, Row-Level-Security für Datenisolation und die eingebaute REST API reduzieren Server-Overhead erheblich.
 
-**Warum Express.js?** Leichtgewichtiger Middleware-Stack fuer Webhook-Verarbeitung. Helmet (Security Headers), CORS, Rate-Limiting und HMAC-Verification sind out-of-the-box konfiguriert.
+**Warum Express.js?** Leichtgewichtiger Middleware-Stack für Webhook-Verarbeitung. Helmet (Security Headers), CORS, Rate-Limiting und HMAC-Verification sind out-of-the-box konfiguriert.
 
 ---
 
@@ -315,7 +315,7 @@ npm test
 
 ### Webhook-Server
 
-Der Server laeuft lokal mit ngrok-Tunnel fuer Vapi Webhooks. Fuer Produktion: Deploy auf Railway, Render oder Vercel Serverless Functions.
+Der Server läuft lokal mit ngrok-Tunnel für Vapi Webhooks. Für Produktion: Deploy auf Railway, Render oder Vercel Serverless Functions.
 
 ---
 
@@ -332,18 +332,5 @@ test:   Tests
 
 ---
 
-## Deliverables (Everlast Challenge)
-
-- [x] Git Repository mit Conventional Commits
-- [x] README mit Architektur, Setup, Design-Entscheidungen
-- [x] `agent/agent-config.json` -- Vollstaendige Konfigurationsdatei
-- [x] Voice Agent mit BANT+ Scoring + Cal.com Terminbuchung
-- [x] Webhook-Server mit Post-Call Summary (Claude)
-- [x] Analytics Dashboard (6 KPIs, 5 Charts, Call-Log, Realtime)
-- [x] 5 Test-Calls (A-Lead, B-Lead, C-Lead, Drop-off, Einwaende)
-- [ ] Demo-Call Recording (A-Lead-Szenario, 6-8 Min.)
-- [ ] Loom-Video (2-3 Min. Architektur + Live-Demo)
-
----
 
 *Everlast Consulting Challenge 2026 | TalentFlow B2B Voice Agent*
